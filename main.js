@@ -4,7 +4,6 @@
 const {app, BrowserWindow, Menu, ipcMain, globalShortcut} = require('electron')
 const path = require('path')
 const Music = require('./music.js')
-const sensor = require('./sensor/build/Release/sensor');
 const Common = require("./lib/common.js")
 
 function isWindows() { return process.platform == 'win32' }
@@ -33,7 +32,7 @@ function createWindow () {
   mainWindow.loadFile('index.html')
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools()
+  //mainWindow.webContents.openDevTools()
 
   return mainWindow
 }
