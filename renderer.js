@@ -30,6 +30,8 @@ const bloomParams = {
   bloomRadius: 0
 }
 
+let rainbowSize = 40
+
 init()
 animate()
 
@@ -72,7 +74,7 @@ function init() {
 
   // 座標軸を表示
   var axes = new THREE.AxisHelper(25);
-  scene.add(axes);
+  //scene.add(axes);
 
   const size = 50
   const divisions = 50
@@ -80,11 +82,12 @@ function init() {
   //scene.add( gridHelper )
 
   rainbows = []
-  rainbows.push( new Rainbow(scene, 200, 90, 0, 0, 0) )
+  //rainbows.push( new Rainbow(scene, 200, 90, 0, 0, 0) )
 
   window.addEventListener( 'resize', onWindowResize )
   window.addEventListener('click', onMouseClick, false);
 
+  /*
   const gui = new GUI();
   GUI.TEXT_CLOSED = ''
   //GUI.TEXT_OPEN   = ''
@@ -111,6 +114,7 @@ function init() {
     bloomPass.radius = Number( value );
 
   } );
+  */
 
 }
 
@@ -145,7 +149,8 @@ function onMouseClick(e) {
   const distance = (targetZ - camera.position.z) / vec.z
   pos.copy( camera.position ).add( vec.multiplyScalar( distance ) )
 
-  const r = Common.randomReal(50, 150)
+  //const r = Common.randomReal(50, 150)
+  const r = rainbowSize
   //const x = Common.randomReal(-100, 100)
   //const z = Common.randomReal(-100, 100)
   const n =  Math.round(  (r / 80) * 150 )
@@ -187,9 +192,29 @@ document.body.addEventListener("keydown", function(e) {
       console.log(`Geometries in Memory: ${renderer.info.memory.geometries}`)
       break
 
-    case e.key == 'a':
-
+    case e.key == 's':
+      rainbowSize = 40
       break
+
+    case e.key == 'm':
+      rainbowSize = 80
+      break
+
+    case e.key == 'l':
+      rainbowSize = 120
+      break
+
+    case e.key == 'x':
+      rainbowSize = 150
+      break
+
+    case e.key == 'd':
+      const rb = rainbows.shift()
+      rb.remove()
+      
+      break
+
+
 
     default:
       break

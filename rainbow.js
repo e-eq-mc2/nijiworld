@@ -35,7 +35,7 @@ export class Rainbow {
     for ( var i = 0; i < num; i ++ ) {
       const r = Common.randomReal(rMin, rMax)
       const s = Common.randomReal(sMin, sMax)
-      const p = this.path(r, x, y, z)
+      const p = this.path(r, x, y - 70, z)
       const t = Common.randomReal(0, s * 0.5)
       const star = new Star(p, t, s)
 
@@ -45,6 +45,8 @@ export class Rainbow {
       scene.add(mesh)
       this.stars[ i ] = star
     }
+
+    this.scene = scene
   }
 
   path(r, x, y, z) {
@@ -76,6 +78,15 @@ export class Rainbow {
       s.line.updateResolution(r)
     } )
   }
+
+  remove() {
+    const scene = this.scene
+    this.stars.forEach( function ( s ) {
+      const m = s.line.mesh
+      scene.remove(m)
+    })
+  }
+
 
 }
  

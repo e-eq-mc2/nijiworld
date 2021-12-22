@@ -49,7 +49,6 @@ export class Star {
   isDwelling() {
     return this.dwell < this.maxDwell
   }
-
 }
 
 // https://zenn.dev/mebiusbox/books/8d9c42883df9f6/viewer/66a2a2
